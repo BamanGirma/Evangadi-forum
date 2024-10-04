@@ -58,9 +58,7 @@ async function login(req, res) {
       // compare password
       const isMatch = await bcrypt.compare(password,user[0].password);
       if(!isMatch){
-         return res
-           .status(StatusCodes.BAD_REQUEST)
-           .json({ msg: "invalid credential" });
+         return res.status(StatusCodes.BAD_REQUEST).json({ msg: "invalid credential" });
       }
      
       const username = user[0].username;
@@ -68,7 +66,7 @@ async function login(req, res) {
 
       const token = jwt.sign({username,userid},process.env.JWT_SECRET,{expiresIn:"1d"})
 
-      return res.status(StatusCodes.OK).json({msg:"user login successfully",token})
+      return res.status(StatusCodes.OK).json({msg:"user login successfully",token,username})
 
     } catch (error) {
       console.log(error.message);
