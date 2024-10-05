@@ -1,7 +1,7 @@
-import axios from 'axios'
-
+import axios from "axios";
+const baseURL = import.meta.env.VITE_BASE_URL;
 const axiosBase = axios.create({
-  baseURL: process.env.REACT_APP_BASE_URL,
+  baseURL: baseURL,
 });
 
-export default axiosBase
+export default axiosBase;
